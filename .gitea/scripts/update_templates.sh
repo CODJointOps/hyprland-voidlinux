@@ -6,6 +6,7 @@ cd "$ROOT_DIR"
 
 MAINTAINER_LINE='maintainer="Rich <rich@bandaholics.cash>"'
 TOKEN="${GITHUB_TOKEN:-${GH_TOKEN:-}}"
+PKG_DIR="${PKG_DIR:-srcpkgs}"
 
 github_api() {
 	local url="$1"
@@ -265,8 +266,14 @@ process_template() {
 	fi
 }
 
+mapfile -t templates < <(find "$PKG_DIR" -mindepth 2 -maxdepth 2 -type f -name template | sort)
+if [[ "${#templates[@]}" -eq 0 ]]; then
+	echo "No templates found under ${PKG_DIR}" >&2
+	exit 1
+fi
+
 failures=0
-for template in */template; do
+for template in "${templates[@]}"; do
 	if ! process_template "$template"; then
 		failures=$((failures + 1))
 	fi
