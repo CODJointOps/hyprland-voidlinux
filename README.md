@@ -38,9 +38,9 @@ Add these entries (or update existing ones to match):
 ```text
 libaquamarine.so.10 aquamarine-0.11.0_3
 libhyprcursor.so.0 hyprcursor-0.1.13_1
-libhyprgraphics.so.4 hyprgraphics-0.5.1_2
+libhyprgraphics.so.4 hyprgraphics-0.5.1_4
 libhyprlang.so.2 hyprlang-0.6.8_2
-libhyprtoolkit.so.5 hyprtoolkit-0.5.4_2
+libhyprtoolkit.so.5 hyprtoolkit-0.5.4_3
 libhyprutils.so.12 hyprutils-0.13.0_1
 libhyprwire.so.3 hyprwire-0.3.1_4
 libsdbus-c++.so.2 sdbus-cpp-2.2.1_1
