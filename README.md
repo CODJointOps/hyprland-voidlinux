@@ -63,7 +63,7 @@ libtomlplusplus.so.3 tomlplusplus-3.4.0_1
 6. Install from local build output:
 
 ```bash
-sudo xbps-install --repository hostdir/binpkgs/ hyprland hyprlock hyprpaper hyprpicker
+sudo xbps-install --repository hostdir/binpkgs/ hyprland hyprlock hyprpaper hyprpicker xdg-desktop-portal-hyprland
 ```
 
 ## Build for x86_64-musl
