@@ -5,6 +5,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT_DIR"
 
 MAINTAINER_LINE='maintainer="Rich <rich@bandaholics.cash>"'
+# Hyprland's CMake requires `glaze 7...<8`; auto-bumping past that breaks its build.
+declare -A MAX_MAJOR=( [glaze]=7 )
 TOKEN="${GITHUB_TOKEN:-${GH_TOKEN:-}}"
 PKG_DIR="${PKG_DIR:-srcpkgs}"
 
@@ -233,6 +235,12 @@ process_template() {
 	# Never downgrade: only advance when latest is strictly newer.
 	if [[ "$(printf '%s\n%s\n' "$current_version" "$latest_version" | sort -V | tail -n1)" == "$current_version" ]]; then
 		echo "${pkgname}: current ${current_version} >= latest ${latest_version}, skipping"
+		return 0
+	fi
+
+	local max_major="${MAX_MAJOR[$pkgname]:-}"
+	if [[ -n "$max_major" && "${latest_version%%.*}" -gt "$max_major" ]]; then
+		echo "${pkgname}: latest ${latest_version} exceeds pinned major ${max_major}, skipping"
 		return 0
 	fi
 
