@@ -12,6 +12,11 @@ If you do not want to build locally, use:
 
 Follow that repo for binary repo setup and update instructions.
 
+## Desktop freezes or cursor lag
+
+See [the troubleshooting notes](docs/desktop-lag.md) for upstream reports,
+tested configuration changes, and a capture command to run during a stall.
+
 ## Build from source
 
 1. Clone `void-packages`:
