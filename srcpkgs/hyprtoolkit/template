@@ -1,7 +1,7 @@
 # Template file for 'hyprtoolkit'
 pkgname=hyprtoolkit
 version=0.6.0
-revision=6
+revision=7
 build_style=cmake
 configure_args="--no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release \
  -DCMAKE_INSTALL_PREFIX:PATH=/usr -DDISABLE_TESTS=ON"
@@ -9,6 +9,9 @@ hostmakedepends="cmake hyprwayland-scanner pkgconf"
 makedepends="abseil-cpp-devel aquamarine cairo-devel gtest-devel hyprgraphics hyprlang hyprutils
  iniparser-devel libdrm-devel libgbm-devel libglvnd-devel libxkbcommon-devel
  pango-devel pixman-devel wayland-devel wayland-protocols"
+# hyprtoolkit.pc lists these in Requires.private; pkg-config fails for consumers without them.
+depends="abseil-cpp-devel cairo-devel iniparser-devel libdrm-devel libgbm-devel libglvnd-devel
+ libxkbcommon-devel pango-devel pixman-devel wayland-devel wayland-protocols"
 short_desc="Modern C++ Wayland-native GUI toolkit"
 maintainer="Rich <rich@bandaholics.cash>"
 license="BSD-3-Clause"

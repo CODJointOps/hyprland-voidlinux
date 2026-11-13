@@ -1,13 +1,16 @@
 # Template file for 'hyprgraphics'
 pkgname=hyprgraphics
 version=0.6.0
-revision=5
+revision=6
 build_style=cmake
 configure_args="--no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr"
 hostmakedepends="cmake pkgconf"
 makedepends="cairo-devel pango-devel file-devel hyprutils
  libdrm-devel libglvnd-devel libjpeg-turbo-devel libjxl-devel libpng-devel
  libspng librsvg-devel libwebp-devel pixman-devel"
+# hyprgraphics.pc lists these in Requires and Requires.private; pkg-config fails for consumers without them.
+depends="cairo-devel pango-devel libglvnd-devel libdrm-devel pixman-devel libpng-devel libjpeg-turbo-devel libwebp-devel
+ librsvg-devel file-devel libjxl-devel"
 short_desc="Hyprland graphics resources and utilities"
 maintainer="Rich <rich@bandaholics.cash>"
 license="BSD-3-Clause"
