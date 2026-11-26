@@ -246,6 +246,8 @@ process_template() {
 
 	echo "${pkgname}: ${current_version} -> ${latest_version}"
 	replace_first_match "$template" '^version=' "version=${latest_version}"
+	# void-repo's sync resets revision to 1 on a version change; matching it keeps the shlibs pkgver stable across syncs.
+	replace_first_match "$template" '^revision=' "revision=1"
 
 	if grep -qE '^[[:space:]]*case "\$XBPS_TARGET_MACHINE" in' "$template"; then
 		local arch
